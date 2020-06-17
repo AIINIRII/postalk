@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Finder</title>
+</head>
+<body>
+    <form name="user_finder" action="#">
+    <label>user ID: </label>
+        <label>
+            <input name="id" type="text" >
+        </label>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="findById(document.user_finder.id.value)">Search</button>
+    </form>
+</body>
+
+<script>
+    function findById(id) {
+        document.user_finder.action="/user/" + id;
+    }
+</script>
+</html>
