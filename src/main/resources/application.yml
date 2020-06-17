@@ -30,6 +30,7 @@ spring:
         login-username: admin
         login-password: 123456
         enabled: true
+    initialization-mode: always
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

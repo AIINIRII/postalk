@@ -17,7 +17,6 @@ import java.util.List;
  * @author AIINIRII
  */
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
     UserService userService = new UserService();
@@ -27,12 +26,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/findUserView")
+    @RequestMapping("/user/findUserView")
     public String toFindUserView() {
         return "/user/findUser";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/user/login")
     public ModelAndView checkUser(User user, ModelAndView modelAndView){
         int res = userService.checkUser(user);
         modelAndView.addObject("checkResult", res);
@@ -44,13 +43,33 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     public ModelAndView findUserById(@PathVariable("id") Integer id, ModelAndView modelAndView) {
         User user = userService.findUserById(id);
         modelAndView.setViewName("user/list");
         List<User> users = new LinkedList<>();
         users.add(user);
         modelAndView.addObject("users", users);
+        return modelAndView;
+    }
+
+    @GetMapping("/user")
+    public String toRegisterPage(){
+        return "user/update";
+    }
+
+    @PostMapping("/user")
+    public ModelAndView registerUser(User user, ModelAndView modelAndView) {
+
+        int res = userService.registerUser(user);
+        if (res == 0) {
+            // success insert, go to login page
+            modelAndView.setViewName("/index");
+        } else if (res == 1){
+            // the username is used, go back to the register page
+            modelAndView.addObject("userR", user);
+            modelAndView.setViewName("/user/update");
+        }
         return modelAndView;
     }
 }
