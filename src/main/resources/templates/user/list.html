@@ -6,31 +6,37 @@
     <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>sex</th>
-            <th>age</th>
-            <th>phone number</th>
-            <th>email</th>
-            <th>registration date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user: ${users}" th:object="${user}">
-            <td th:text="*{id}"></td>
-            <td th:text="*{username}"></td>
-            <td th:text="*{sex}"></td>
-            <td th:text="*{age}"></td>
-            <td th:text="*{phoneNumber}"></td>
-            <td th:text="*{email}"></td>
-            <td th:text="*{#dates.format(registrationDate, 'yyyy-MM-dd')}"></td>
-            <td><button type="button" class="btn btn-primary" th:onclick="'window.location.href = \'' + @{/user/} + ${user.id}">Modify</button></td>
-            <td><button type="button" class="btn btn-danger" th:href="@{'/user/delete/' + ${user.id}}">Delete</button></td>
-        </tr>
-        </tbody>
-    </table>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>username</th>
+        <th>sex</th>
+        <th>age</th>
+        <th>phone number</th>
+        <th>email</th>
+        <th>registration date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}" th:object="${user}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{username}"></td>
+        <td th:text="*{sex}"></td>
+        <td th:text="*{age}"></td>
+        <td th:text="*{phoneNumber}"></td>
+        <td th:text="*{email}"></td>
+        <td th:text="*{#dates.format(registrationDate, 'yyyy-MM-dd')}"></td>
+        <td>
+            <button class="btn btn-primary" th:onclick="'window.location.href = \'' + @{/user/} + ${user.id}"
+                    type="button">Modify
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-danger" th:href="@{'/user/delete/' + ${user.id}}" type="button">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

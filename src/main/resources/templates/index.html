@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
     <title>Signin Template for Bootstrap</title>
     <!-- Bootstrap core CSS -->
     <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
@@ -14,30 +14,30 @@
 
 <body class="text-center">
 <div>
-<form class="form-signin" method="post" th:action="@{/user/login}">
-    <img class="mb-4" src="/asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <p style="color: #b21f2d" th:if="${checkResult == 1}">wrong password</p>
-    <p style="color: #b21f2d" th:if="${checkResult == 2}">no such user</p>
-    <label class="sr-only">Username</label>
-    <label>
-        <input name="username" type="text" class="form-control" placeholder="Username" required="" autofocus=""/>
-    </label>
-    <label class="sr-only">Password</label>
-    <label>
-        <input name="password" type="password" class="form-control" placeholder="Password" required=""/>
-    </label>
-    <div class="checkbox mb-3">
+    <form class="form-signin" method="post" th:action="@{/user/login}">
+        <img alt="" class="mb-4" height="72" src="/asserts/img/bootstrap-solid.svg" width="72">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <p style="color: #b21f2d" th:if="${checkResult == 1}">wrong password</p>
+        <p style="color: #b21f2d" th:if="${checkResult == 2}">no such user</p>
+        <label class="sr-only">Username</label>
         <label>
-            <input type="checkbox" value="remember-me"/> Remember me
+            <input autofocus="" class="form-control" name="username" placeholder="Username" required="" type="text"/>
         </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
-<form class="form-signin" action="/user/" method="get">
-    <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
-</form>
-<p class="mt-5 mb-3 text-muted">© 2019-2020</p>
+        <label class="sr-only">Password</label>
+        <label>
+            <input class="form-control" name="password" placeholder="Password" required="" type="password"/>
+        </label>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"/> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <form action="/user/" class="form-signin" method="get">
+        <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
+    </form>
+    <p class="mt-5 mb-3 text-muted">© 2019-2020</p>
 </div>
 </body>
 

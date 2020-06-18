@@ -152,6 +152,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
+INSERT INTO `post` VALUES (1),(2);
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,14 +167,14 @@ CREATE TABLE `text` (
   `id` int NOT NULL AUTO_INCREMENT,
   `uid` int NOT NULL,
   `content` text NOT NULL,
-  `time` date NOT NULL,
+  `time` datetime NOT NULL,
   `anonymous` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `text_id_uindex` (`id`),
   KEY `text_user_id_fk` (`uid`),
   KEY `text_time_index` (`time` DESC),
   CONSTRAINT `text_user_id_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,6 +183,7 @@ CREATE TABLE `text` (
 
 LOCK TABLES `text` WRITE;
 /*!40000 ALTER TABLE `text` DISABLE KEYS */;
+INSERT INTO `text` VALUES (1,5,'Hello World! This is a test!','2020-06-18 00:00:00',0),(2,5,'Hello World! This is the second test!','2020-06-18 00:00:00',1);
 /*!40000 ALTER TABLE `text` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,4 +228,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-18 12:14:32
+-- Dump completed on 2020-06-18 17:19:02

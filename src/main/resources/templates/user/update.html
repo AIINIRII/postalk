@@ -8,7 +8,7 @@
     }
 </style>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <title>Register</title>
     <!-- Bootstrap core CSS -->
     <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
@@ -17,11 +17,12 @@
 </head>
 <body>
 <div id="wrapper">
-    <form class="needs-validation" novalidate method="post" action="/user">
+    <form action="/user" class="needs-validation" method="post" novalidate>
         <div class="form-group row">
-            <label for="inputUsername" class="col-sm-2 col-form-label">User name*</label>
+            <label class="col-sm-2 col-form-label" for="inputUsername">User name*</label>
             <div class="col-sm-10 mb-3">
-                <input name="username" type="text" class="form-control" id="inputUsername" th:value="${userR!=null}?${userR.username}" required>
+                <input class="form-control" id="inputUsername" name="username" required
+                       th:value="${userR!=null}?${userR.username}" type="text">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -31,9 +32,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password*</label>
+            <label class="col-sm-2 col-form-label" for="inputPassword">Password*</label>
             <div class="col-sm-10">
-                <input name="password" type="password" class="form-control" id="inputPassword" required>
+                <input class="form-control" id="inputPassword" name="password" required type="password">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -47,13 +48,15 @@
                 <legend class="col-form-label col-sm-2 pt-0">Gender*</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" id="gridRadios1" value="M"  th:checked="${userR!=null}?${userR.sex=='M'}" checked>
+                        <input checked class="form-check-input" id="gridRadios1" name="sex" th:checked="${userR!=null}?${userR.sex=='M'}"
+                               type="radio" value="M">
                         <label class="form-check-label" for="gridRadios1">
                             Male
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" id="gridRadios2" th:checked="${userR!=null}?${userR.sex=='F'}" value="F">
+                        <input class="form-check-input" id="gridRadios2" name="sex" th:checked="${userR!=null}?${userR.sex=='F'}"
+                               type="radio" value="F">
                         <label class="form-check-label" for="gridRadios2">
                             Female
                         </label>
@@ -62,9 +65,10 @@
             </div>
         </fieldset>
         <div class="form-group row">
-            <label for="inputAge" class="col-sm-2 col-form-label">Age*</label>
+            <label class="col-sm-2 col-form-label" for="inputAge">Age*</label>
             <div class="col-sm-10">
-                <input name="age" type="number" class="form-control" id="inputAge" th:value="${userR!=null}?${userR.age}" required>
+                <input class="form-control" id="inputAge" name="age" required
+                       th:value="${userR!=null}?${userR.age}" type="number">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -74,9 +78,10 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputPhoneNumber" class="col-sm-2 col-form-label">Phone number</label>
+            <label class="col-sm-2 col-form-label" for="inputPhoneNumber">Phone number</label>
             <div class="col-sm-10">
-                <input name="phoneNumber" type="text" class="form-control" th:value="${userR!=null}?${userR.phoneNumber}" id="inputPhoneNumber">
+                <input class="form-control" id="inputPhoneNumber" name="phoneNumber"
+                       th:value="${userR!=null}?${userR.phoneNumber}" type="text">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -86,9 +91,10 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+            <label class="col-sm-2 col-form-label" for="inputEmail">Email</label>
             <div class="col-sm-10">
-                <input name="email" type="email" class="form-control" th:value="${userR!=null}?${userR.email}" id="inputEmail">
+                <input class="form-control" id="inputEmail" name="email" th:value="${userR!=null}?${userR.email}"
+                       type="email">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -99,7 +105,7 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button class="btn btn-primary" type="submit">Sign in</button>
             </div>
         </div>
     </form>
