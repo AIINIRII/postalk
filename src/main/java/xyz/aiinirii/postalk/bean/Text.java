@@ -14,6 +14,7 @@ public abstract class Text implements Serializable {
     private Integer id;
     private String content;
     private Date time;
+    private boolean anonymous = false;
 
     private User user;
 }

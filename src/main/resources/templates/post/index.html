@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Post</title>
+    <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
+<div class="accordion" id="accordionExample">
+    <div class="card w-75" th:each="post: ${postList}" th:object="${post}">
+        <div class="card-body">
+            <h5 class="card-title"
+                th:text="*{user.username} + '  ' + ${#dates.format(post.time, 'yyyy-MM-dd HH:mm:ss')}">Title</h5>
+            <p class="card-text" th:text="*{content}">content</p>
+        </div>
+    </div>
+</div>
 </body>
+<script src="/asserts/js/bootstrap.min.js"></script>
 </html>
