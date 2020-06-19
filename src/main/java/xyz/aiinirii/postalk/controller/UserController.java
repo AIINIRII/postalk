@@ -1,6 +1,5 @@
 package xyz.aiinirii.postalk.controller;
 
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +48,7 @@ public class UserController {
             request.getSession().setAttribute("loginUser", user);
             List<Post> postList = postService.findAllPostByUId(user.getId());
             modelAndView.addObject("postList", postList);
-            modelAndView.setViewName("user/mypage");
+            modelAndView.setViewName("user/myPage");
         } else {
             modelAndView.setViewName("/index");
         }
@@ -66,12 +65,12 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/user/")
     public String toRegisterPage() {
         return "user/update";
     }
 
-    @PostMapping("/user")
+    @PostMapping("/user/")
     public ModelAndView registerUser(User user, ModelAndView modelAndView) {
 
         int res = userService.registerUser(user);
@@ -85,4 +84,5 @@ public class UserController {
         }
         return modelAndView;
     }
+
 }

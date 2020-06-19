@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import xyz.aiinirii.postalk.bean.Post;
 import xyz.aiinirii.postalk.mapper.PostMapper;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +30,7 @@ public class PostService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void createPost(Post post){
+        post.setTime(new Date(System.currentTimeMillis()));
         postMapper.insertText(post);
         postMapper.insertPost(post);
     }

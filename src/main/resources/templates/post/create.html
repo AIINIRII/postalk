@@ -1,11 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    #wrapper {
+        width: 60%;
+        margin: 0 auto;
+        border: 0;
+    }
+</style>
 <head>
     <!--this page is to create a post-->
     <meta charset="UTF-8">
     <title>Create a post</title>
+    <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
+<div id="wrapper">
+    <form action="/post/" class="needs-validation" method="post" novalidate>
+        <div class="form-group">
+            <label for="inputContent">Content</label>
+                <textarea class="form-control" id="inputContent" name="content" required
+                          type="text"></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    It is not allowed to be empty.
+                </div>
+        </div>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Anonymous</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input checked class="form-check-input" id="inputAnonymous1" name="anonymous"
+                               type="radio" value="true">
+                        <label class="form-check-label" for="inputAnonymous1">
+                            True
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input checked class="form-check-input" id="inputAnonymous2" name="anonymous"
+                               type="radio" value="false">
+                        <label class="form-check-label" for="inputAnonymous2">
+                            False
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button class="btn btn-primary" type="submit">Post Now</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 </html>

@@ -7,6 +7,8 @@
     <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{fragment/headbutton::#headButton}">
+</div>
 <div class="accordion" id="accordionExample">
     <div class="card w-75" th:each="post: ${postList}">
         <div class="card-body">
