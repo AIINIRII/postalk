@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import xyz.aiinirii.postalk.bean.Post;
+import xyz.aiinirii.postalk.bean.Text;
 import xyz.aiinirii.postalk.bean.User;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ class PostMapperTest {
 
     private PostMapper postMapper;
     private UserMapper userMapper;
+    private TextMapper textMapper;
 
     @Autowired
     public void setPostMapper(PostMapper postMapper) {
@@ -41,7 +43,7 @@ class PostMapperTest {
         post.setUser(user);
         post.setAnonymous(true);
         post.setContent("Hello World! This is the second test!");
-        postMapper.insertText(post);
+        textMapper.insertText(post);
         postMapper.insertPost(post);
         System.out.println("post = " + post);
     }

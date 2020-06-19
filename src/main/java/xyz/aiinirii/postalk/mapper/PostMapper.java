@@ -25,10 +25,6 @@ public interface PostMapper {
     )
     List<Post> findAllPost();
 
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("insert into text(uid, content, time, anonymous) values(#{user.id}, #{content}, #{time}, #{anonymous})")
-    void insertText(Post post);
-
     @Insert("insert into post(tid) values (last_insert_id())")
     void insertPost(Post post);
 
@@ -42,4 +38,13 @@ public interface PostMapper {
             }
     )
     List<Post> findAllPostByUId(Integer id);
+
+    @Select("select * from post right join text t on post.tid = t.id where tid = #{id}")
+    Post findPostById(Integer id);
+
+    @Update("update post left join text t on post.tid = t.id set content=#{content} where tid=#{id}")
+    int updatePost(Post post);
+
+    @Delete("delete from post where tid = #{id}")
+    int deletePostById(Integer id);
 }

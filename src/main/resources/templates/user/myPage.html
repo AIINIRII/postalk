@@ -13,9 +13,19 @@
     <div class="accordion" id="accordionExample">
         <div class="card w-75" th:each="post: ${postList}">
             <div class="card-body">
-                <h5 class="card-title"
-                    th:text="${post.user.username} + '  ' + ${#dates.format(post.time, 'yyyy-MM-dd HH:mm:ss')}">Title</h5>
-                <p class="card-text" th:text="${post.content}">content</p>
+                <div class="row">
+                    <p class="card-text col-sm-10" th:text="${post.content}">content</p>
+                    <form class="col-sm-1" th:action="@{'/post/' + ${post.getId()}}" method="get">
+                        <button type="submit" class="btn btn-success">Modify</button>
+                    </form>
+                    <form class="col-sm-1" th:action="@{'/post/' + ${post.getId()}}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+                <a href="#" class="badge badge-light" th:text="${post.user.username}">Light</a>
+                <span href="#" class="badge badge-light"
+                      th:text="${#dates.format(post.time, 'yyyy-MM-dd HH:mm')}">Light</span>
             </div>
         </div>
     </div>

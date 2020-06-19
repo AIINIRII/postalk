@@ -10,37 +10,40 @@
 <head>
     <!--this page is to create a post-->
     <meta charset="UTF-8">
-    <title>Create a post</title>
+    <title th:if="${post==null}">Create a post</title>
+    <title th:if="${post!=null}">Edit the post</title>
     <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrapper">
-    <form action="/post/" class="needs-validation" method="post" novalidate>
+    <form action="/post/" method="post" class="needs-validation" novalidate>
+        <input type="hidden" name="_method" value="put" th:if="${post!=null}"/>
+        <input type="hidden" name="id" th:value="${post.getId()}" th:if="${post!=null}"/>
         <div class="form-group">
             <label for="inputContent">Content</label>
-                <textarea class="form-control" id="inputContent" name="content" required
-                          type="text"></textarea>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    It is not allowed to be empty.
-                </div>
+            <textarea class="form-control" id="inputContent" name="content" required
+                      type="text" th:text="${post!=null}?${post.content}"></textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                It is not allowed to be empty.
+            </div>
         </div>
-        <fieldset class="form-group">
+        <fieldset class="form-group" th:if="${post==null}">
             <div class="row">
                 <legend class="col-form-label col-sm-2 pt-0">Anonymous</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
-                        <input checked class="form-check-input" id="inputAnonymous1" name="anonymous"
+                        <input class="form-check-input" id="inputAnonymous1" name="anonymous"
                                type="radio" value="true">
                         <label class="form-check-label" for="inputAnonymous1">
                             True
                         </label>
                     </div>
                     <div class="form-check">
-                        <input checked class="form-check-input" id="inputAnonymous2" name="anonymous"
-                               type="radio" value="false">
+                        <input class="form-check-input" id="inputAnonymous2" name="anonymous"
+                               type="radio" value="false" checked>
                         <label class="form-check-label" for="inputAnonymous2">
                             False
                         </label>
@@ -50,7 +53,8 @@
         </fieldset>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button class="btn btn-primary" type="submit">Post Now</button>
+                <button class="btn btn-primary" type="submit" th:text="${post!=null}?'Modify':'Post Now'">Post Now
+                </button>
             </div>
         </div>
     </form>

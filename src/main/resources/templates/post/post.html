@@ -12,9 +12,9 @@
 <div class="accordion" id="accordionExample">
     <div class="card w-75" th:each="post: ${postList}">
         <div class="card-body">
-            <h5 class="card-title"
-                th:text="${post.user.username} + '  ' + ${#dates.format(post.time, 'yyyy-MM-dd HH:mm:ss')}">Title</h5>
             <p class="card-text" th:text="${post.content}">content</p>
+            <a href="#" class="badge badge-light" th:text="${post.user.username}">Light</a>
+            <span href="#" class="badge badge-light" th:text="${#dates.format(post.time, 'yyyy-MM-dd HH:mm')}">Light</span>
         </div>
     </div>
 </div>
