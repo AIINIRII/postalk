@@ -73,7 +73,7 @@ public class PostController {
     @PutMapping("/post/")
     public ModelAndView updatePost(Post post, ModelAndView modelAndView, @SessionAttribute("loginUser") User user) throws Exception {
 
-        boolean updatePost = postService.updatePost(post);
+        boolean updatePost = postService.updatePost(post, user);
         if (!updatePost) {
             throw new Exception("the update operation is failed");
         }
@@ -90,7 +90,7 @@ public class PostController {
     public ModelAndView deletePost(@SessionAttribute("loginUser") User user, @PathVariable("id") Integer id, ModelAndView modelAndView) throws Exception {
 
         // delete post by id
-        boolean deletePostById = postService.deletePostById(id);
+        boolean deletePostById = postService.deletePostById(id, user);
 
         // check whether the post is deleted
         if (!deletePostById) {
