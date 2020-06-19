@@ -31,4 +31,15 @@ public interface PostMapper {
 
     @Insert("insert into post(tid) values (last_insert_id())")
     void insertPost(Post post);
+
+    @Select("select * from post p left join text t on p.tid = t.id where uid = #{id} ORDER BY t.time DESC")
+    @Results(id = "findAllPostByUId",
+            value = {
+                    @Result(id = true, column = "tid", property = "id"),
+                    @Result(column = "content", property = "content"),
+                    @Result(column = "time", property = "time"),
+                    @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY))
+            }
+    )
+    List<Post> findAllPostByUId(Integer id);
 }

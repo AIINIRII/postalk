@@ -32,4 +32,9 @@ public class PostService {
         postMapper.insertText(post);
         postMapper.insertPost(post);
     }
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Post> findAllPostByUId(Integer id) {
+        return postMapper.findAllPostByUId(id);
+    }
 }

@@ -1,5 +1,6 @@
 package xyz.aiinirii.postalk.controller;
 
+import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +47,8 @@ public class UserController {
         modelAndView.addObject("checkResult", res);
         if (res == 0) {
             request.getSession().setAttribute("loginUser", user);
+            List<Post> postList = postService.findAllPostByUId(user.getId());
+            modelAndView.addObject("postList", postList);
             modelAndView.setViewName("user/mypage");
         } else {
             modelAndView.setViewName("/index");

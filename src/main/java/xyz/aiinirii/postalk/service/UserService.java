@@ -74,6 +74,12 @@ public class UserService {
         if (checkUser == null) {
             return 2;
         } else if (Objects.equals(checkUser.getPassword(), user.getPassword())) {
+            user.setRegistrationDate(checkUser.getRegistrationDate());
+            user.setSex(checkUser.getSex());
+            user.setPhoneNumber(checkUser.getPhoneNumber());
+            user.setAge(checkUser.getAge());
+            user.setId(checkUser.getId());
+            user.setEmail(checkUser.getEmail());
             return 0;
         } else {
             return 1;

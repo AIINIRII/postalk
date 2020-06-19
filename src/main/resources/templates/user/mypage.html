@@ -7,14 +7,17 @@
     <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-    <div class="btn-group btn-group-lg" role="group" aria-label="First group">
-        <form action="/posts/" method="get">
-            <button type="submit" class="btn btn-secondary">Go to post page</button>
-        </form>
-        <button type="button" class="btn btn-secondary">My friends</button>
-        <button type="button" class="btn btn-secondary">Have a chat</button>
-        <button type="button" class="btn btn-secondary">About</button>
+<div th:replace="~{fragment/headbutton::#headButton}">
+</div>
+<div>
+    <div class="accordion" id="accordionExample">
+        <div class="card w-75" th:each="post: ${postList}">
+            <div class="card-body">
+                <h5 class="card-title"
+                    th:text="${post.user.username} + '  ' + ${#dates.format(post.time, 'yyyy-MM-dd HH:mm:ss')}">Title</h5>
+                <p class="card-text" th:text="${post.content}">content</p>
+            </div>
+        </div>
     </div>
 </div>
 </body>
