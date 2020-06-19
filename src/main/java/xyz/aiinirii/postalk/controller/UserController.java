@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import xyz.aiinirii.postalk.bean.Post;
 import xyz.aiinirii.postalk.bean.User;
+import xyz.aiinirii.postalk.service.PostService;
 import xyz.aiinirii.postalk.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,11 +22,17 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    UserService userService = new UserService();
+    UserService userService;
+    PostService postService;
 
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setPostService(PostService postService) {
+        this.postService = postService;
     }
 
     @RequestMapping("/user/findUserView")
@@ -32,11 +41,12 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public ModelAndView checkUser(User user, ModelAndView modelAndView) {
+    public ModelAndView checkUserToPostPage(User user, ModelAndView modelAndView, HttpServletRequest request) {
         int res = userService.checkUser(user);
         modelAndView.addObject("checkResult", res);
         if (res == 0) {
-            modelAndView.setViewName("redirect:/posts/");
+            request.getSession().setAttribute("loginUser", user);
+            modelAndView.setViewName("user/mypage");
         } else {
             modelAndView.setViewName("/index");
         }

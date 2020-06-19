@@ -66,6 +66,7 @@ public class UserService {
      * 0: pass
      * 1: wrong password
      * 2: no such user
+     * 3: no login
      */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public int checkUser(User user) {

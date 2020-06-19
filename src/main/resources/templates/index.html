@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!--this page is for user to login-->
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <title>Signin Template for Bootstrap</title>
+    <title>Welcome to Postalk</title>
     <!-- Bootstrap core CSS -->
     <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -19,6 +20,7 @@
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <p style="color: #b21f2d" th:if="${checkResult == 1}">wrong password</p>
         <p style="color: #b21f2d" th:if="${checkResult == 2}">no such user</p>
+        <p style="color: #b21f2d" th:if="${checkResult == 3}">please login first</p>
         <label class="sr-only">Username</label>
         <label>
             <input autofocus="" class="form-control" name="username" placeholder="Username" required="" type="text"/>

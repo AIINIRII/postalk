@@ -26,7 +26,7 @@ public class PostController {
     public ModelAndView findAllPost(ModelAndView modelAndView){
         List<Post> postList = postService.findAllPost();
         modelAndView.addObject("postList", postList);
-        modelAndView.setViewName("/post/index");
+        modelAndView.setViewName("/post/post");
         return modelAndView;
     }
 }
