@@ -2,10 +2,7 @@ package xyz.aiinirii.postalk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import xyz.aiinirii.postalk.bean.Post;
 import xyz.aiinirii.postalk.bean.User;
@@ -68,6 +65,15 @@ public class UserController {
     @GetMapping("/user/")
     public String toRegisterPage() {
         return "user/update";
+    }
+
+    @GetMapping("/user/myPage")
+    public ModelAndView toMyPage(@SessionAttribute("loginUser") User user, ModelAndView modelAndView) {
+        modelAndView.setViewName("user/myPage");
+        List<Post> postList = postService.findAllPostByUId(user.getId());
+        modelAndView.addObject("postList", postList);
+        modelAndView.setViewName("user/myPage");
+        return modelAndView;
     }
 
     @PostMapping("/user/")

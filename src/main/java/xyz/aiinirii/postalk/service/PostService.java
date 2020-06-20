@@ -63,8 +63,7 @@ public class PostService {
     @Transactional(propagation = Propagation.REQUIRED)
     public boolean updatePost(Post post, User user) {
         // check whether the user is the writer of the post
-        post.setUser(postMapper.findPostById(post.getId()).getUser());
-        if (post.getUser() == user) {
+        if (postMapper.findPostById(post.getId()).getUser().equals(user)) {
             return postMapper.updatePost(post) == 1;
         }
         return false;
@@ -80,7 +79,7 @@ public class PostService {
     @Transactional(propagation = Propagation.REQUIRED)
     public boolean deletePostById(Integer id, User user) {
         // check whether the user is the writer of the post
-        if (postMapper.findPostById(id).getUser() == user) {
+        if (postMapper.findPostById(id).getUser().equals(user)) {
             int postDelete = postMapper.deletePostById(id);
             int textDelete = textMapper.deleteTextById(id);
             return postDelete == 1 && textDelete == 1;

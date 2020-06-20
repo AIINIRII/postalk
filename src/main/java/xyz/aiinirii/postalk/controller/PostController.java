@@ -49,7 +49,6 @@ public class PostController {
 
         // create the post
         postService.createPost(post);
-        System.out.println("FUCKFUCKFUCK!");
         // find the post again with the user id
         List<Post> postList = postService.findAllPostByUId(user.getId());
         modelAndView.addObject("postList", postList);

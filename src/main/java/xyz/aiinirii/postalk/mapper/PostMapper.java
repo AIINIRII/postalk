@@ -39,7 +39,15 @@ public interface PostMapper {
     )
     List<Post> findAllPostByUId(Integer id);
 
-    @Select("select * from post right join text t on post.tid = t.id where tid = #{id}")
+    @Select("select * from post left join text t on post.tid = t.id where tid = #{id}")
+    @Results(id = "findPostById",
+            value = {
+                    @Result(id = true, column = "tid", property = "id"),
+                    @Result(column = "content", property = "content"),
+                    @Result(column = "time", property = "time"),
+                    @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY))
+            }
+    )
     Post findPostById(Integer id);
 
     @Update("update post left join text t on post.tid = t.id set content=#{content} where tid=#{id}")
