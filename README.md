@@ -4,7 +4,7 @@
 
 It is a web forum application based on Spring Boot, Mybatis and MySQL.
 
-## Install
+## Installation
 
 - MySQL config
     - username=root
@@ -12,6 +12,6 @@ It is a web forum application based on Spring Boot, Mybatis and MySQL.
     - create a database called postalk
     - import sql file 'src\main\resources\data.sql'
 
-## Database Design
+## More Information
 
-![Postalk_ER](https://i.loli.net/2020/06/18/H2GaFtzToL6ROmq.png)
+<https://www.aiinirii.xyz/2020/06/17/Postalk/>
