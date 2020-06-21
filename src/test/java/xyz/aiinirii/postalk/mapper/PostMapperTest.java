@@ -4,12 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import xyz.aiinirii.postalk.bean.Post;
-import xyz.aiinirii.postalk.bean.Text;
 import xyz.aiinirii.postalk.bean.User;
 
 import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PostMapperTest {
@@ -37,7 +34,7 @@ class PostMapperTest {
 
     @Test
     void insertPost() {
-        User user = userMapper.findUserByUsername("AIINIRII");
+        User user = userMapper.findUserByUsernameExact("AIINIRII");
         Post post = new Post();
         post.setTime(new Date(System.currentTimeMillis()));
         post.setUser(user);

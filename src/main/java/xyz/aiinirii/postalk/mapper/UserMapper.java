@@ -16,11 +16,12 @@ public interface UserMapper {
     @Select("select * from user")
     List<User> findAllUser();
 
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     @Select("select * from user where id=#{id}")
     User findUserById(Integer id);
 
     @Select("select * from user where username=#{username}")
-    User findUserByUsername(String username);
+    User findUserByUsernameExact(String username);
 
     @Select("delete from user where id=#{id}")
     int deleteUserById(Integer id);
@@ -31,4 +32,7 @@ public interface UserMapper {
 
     @Insert("update user set username=#{username}, password=#{password}, sex=#{sex}, age=#{age}, phone_number=#{phoneNumber}, email=#{email}, registration_date=#{registration_date} where id=#{id}")
     int updateUser(User user);
+
+    @Select("select * from user where username like #{inputSearch}")
+    List<User> findUserByUsername(String inputSearch);
 }

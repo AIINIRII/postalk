@@ -12,9 +12,15 @@
 <div class="accordion" id="accordionExample">
     <div class="card w-75" th:each="post: ${postList}">
         <div class="card-body">
-            <p class="card-text" th:text="${post.content}">content</p>
-            <a href="#" class="badge badge-light" th:text="${post.user.username}">Light</a>
-            <span href="#" class="badge badge-light" th:text="${#dates.format(post.time, 'yyyy-MM-dd HH:mm')}">Light</span>
+            <div class="row">
+                <p class="card-text col-sm-10" th:text="${post.content}">content</p>
+                <form action="/like/" method="post">
+                    <input type="hidden" name="id" th:value="${post.id}">
+                    <button type="submit" class="btn btn-success" th:text="'Like ' + ${post.likes.size()}">Like</button>
+                </form>
+            </div>
+            <a href="#" class="badge badge-light" th:text="${!post.anonymous?post.user.username:'anonymous'}">Light</a>
+            <span class="badge badge-light" th:text="${#dates.format(post.time, 'yyyy-MM-dd HH:mm')}">Light</span>
         </div>
     </div>
 </div>

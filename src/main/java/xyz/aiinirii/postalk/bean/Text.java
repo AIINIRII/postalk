@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author AIINIRII
@@ -17,4 +18,5 @@ public abstract class Text implements Serializable {
     private boolean anonymous = false;
 
     private User user;
+    private List<Like> likes;
 }

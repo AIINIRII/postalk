@@ -8,6 +8,7 @@ import xyz.aiinirii.postalk.bean.User;
 import xyz.aiinirii.postalk.mapper.UserMapper;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -48,7 +49,7 @@ public class UserService {
     @Transactional(propagation = Propagation.REQUIRED)
     public int registerUser(User user) {
         // check whether the user name is used
-        User userByUsername = userMapper.findUserByUsername(user.getUsername());
+        User userByUsername = userMapper.findUserByUsernameExact(user.getUsername());
         if (userByUsername != null) {
             return 1;
         } else {
@@ -70,7 +71,7 @@ public class UserService {
      */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public int checkUser(User user) {
-        User checkUser = userMapper.findUserByUsername(user.getUsername());
+        User checkUser = userMapper.findUserByUsernameExact(user.getUsername());
         if (checkUser == null) {
             return 2;
         } else if (Objects.equals(checkUser.getPassword(), user.getPassword())) {
@@ -84,5 +85,10 @@ public class UserService {
         } else {
             return 1;
         }
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<User> findUserByUsername(String inputSearch) {
+        return userMapper.findUserByUsername('%' + inputSearch + '%');
     }
 }

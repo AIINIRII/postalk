@@ -20,7 +20,8 @@ public interface PostMapper {
                     @Result(id = true, column = "tid", property = "id"),
                     @Result(column = "content", property = "content"),
                     @Result(column = "time", property = "time"),
-                    @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY))
+                    @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY)),
+                    @Result(id = true, column = "tid", property = "likes", many = @Many(select = "xyz.aiinirii.postalk.mapper.LikeMapper.findLikeByTId", fetchType = FetchType.LAZY))
             }
     )
     List<Post> findAllPost();
@@ -34,7 +35,8 @@ public interface PostMapper {
                     @Result(id = true, column = "tid", property = "id"),
                     @Result(column = "content", property = "content"),
                     @Result(column = "time", property = "time"),
-                    @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY))
+                    @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY)),
+                    @Result(id = true, column = "tid", property = "likes", many = @Many(select = "xyz.aiinirii.postalk.mapper.LikeMapper.findLikeByTId", fetchType = FetchType.LAZY))
             }
     )
     List<Post> findAllPostByUId(Integer id);
@@ -45,7 +47,8 @@ public interface PostMapper {
                     @Result(id = true, column = "tid", property = "id"),
                     @Result(column = "content", property = "content"),
                     @Result(column = "time", property = "time"),
-                    @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY))
+                    @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY)),
+                    @Result(id = true, column = "tid", property = "likes", many = @Many(select = "xyz.aiinirii.postalk.mapper.LikeMapper.findLikeByTId", fetchType = FetchType.LAZY))
             }
     )
     Post findPostById(Integer id);

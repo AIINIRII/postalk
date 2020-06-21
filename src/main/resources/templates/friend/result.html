@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Result</title>
+    <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragment/headbutton::#headButton}">
+</div>
+<div class="accordion" id="searchResult">
+    <div class="card w-75" th:each="friend: ${friends}">
+        <div class="card-body">
+            <div class="row">
+                <p class="card-text col-sm-10" th:text="${friend.id}">id</p>
+                <p class="card-text col-sm-10" th:text="${friend.username}">username</p>
+                <form action="/friend/" method="post">
+                    <input type="hidden" name="id" th:value="${friend.id}">
+                    <button type="submit" class="btn btn-success">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
