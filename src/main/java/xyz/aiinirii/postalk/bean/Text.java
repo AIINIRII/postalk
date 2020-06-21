@@ -19,4 +19,5 @@ public abstract class Text implements Serializable {
 
     private User user;
     private List<Like> likes;
+    private List<Comment> comments;
 }

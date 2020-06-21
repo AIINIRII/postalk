@@ -1,6 +1,7 @@
 package xyz.aiinirii.postalk.mapper;
 
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 import xyz.aiinirii.postalk.bean.User;
 
@@ -16,7 +17,6 @@ public interface UserMapper {
     @Select("select * from user")
     List<User> findAllUser();
 
-    @Options(useGeneratedKeys = true, keyProperty = "id")
     @Select("select * from user where id=#{id}")
     User findUserById(Integer id);
 

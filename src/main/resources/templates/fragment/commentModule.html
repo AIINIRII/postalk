@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CommentModule</title>
+</head>
+<body>
+<div id="commentModule" class="card" style="width: auto">
+        <ul class="list-group list-group-flush">
+            <li th:each="comment: ${post.comments}" class="list-group-item">
+                <div class="row">
+                    <a href="#" class="badge badge-light card-text"
+                       th:text="${!comment.anonymous?comment.user.username:'anonymous'}">Light</a>
+                    <p class="card-text col-sm-8" th:text="${comment.content}">content</p>
+                    <form th:action="@{'/comment/' + ${comment.id}}" method="post" th:if="${session.loginUser.id == comment.user.id}">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
