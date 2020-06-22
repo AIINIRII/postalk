@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--this page is to show the user it self's information-->
+    <meta charset="UTF-8">
+    <title>My Info</title>
+    <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragment/headbutton::#headButton}">
+</div>
+<div>
+    <div class="accordion" id="accordionExample">
+        <div class="card" style="width: auto" th:each="post: ${postList}">
+            <div class="card-body">
+                <div class="row">
+                    <p class="card-text col-sm-8" th:text="${post.content}">content</p>
+                    <form class="col-sm-1" th:action="@{'/post/' + ${post.getId()}}" method="get">
+                        <button type="submit" class="btn btn-success">Modify</button>
+                    </form>
+                    <form class="col-sm-1" th:action="@{'/post/' + ${post.getId()}}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+                <a href="#" class="badge badge-light" th:text="${post.user.username}">Light</a>
+                <span href="#" class="badge badge-light"
+                      th:text="${#dates.format(post.time, 'yyyy-MM-dd HH:mm')}">Light</span>
+                <div th:replace="~{fragment/commentModule::#commentModule}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

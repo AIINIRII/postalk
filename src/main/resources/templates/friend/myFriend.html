@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--this page is to manage the user's friends-->
+    <meta charset="UTF-8">
+    <title>My Friend</title>
+    <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragment/headbutton::#headButton}">
+</div>
+<div class="accordion" id="searchResult">
+    <div>
+        <form action="/friend/" method="get">
+            <button type="submit" class="btn badge-info">New Friend</button>
+        </form>
+    </div>
+    <div class="card w-75" th:each="friend: ${friends}">
+        <div class="card-body">
+            <div class="row">
+                <p class="card-text col-sm-10" th:text="'ID: ' + ${friend.id}">id</p>
+                <p class="card-text col-sm-10" th:text="'User name: ' + ${friend.username}">username</p>
+                <form th:action="@{'/friend/' + ${friend.id}}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button class="btn btn-danger" type="submit">delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

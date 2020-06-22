@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    #wrapper {
+        width: 60%;
+        margin: 0 auto;
+        border: 0;
+    }
+</style>
+<head>
+    <!--this page is to register/update user's information-->
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>Register</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <!--<link href="/asserts/css/signin.css" rel="stylesheet">-->
+</head>
+<body>
+<div id="wrapper">
+    <form action="/user/" class="needs-validation" method="post" novalidate>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="inputUsername">User name*</label>
+            <div class="col-sm-10 mb-3">
+                <input class="form-control" id="inputUsername" name="username" required
+                       th:value="${userR!=null}?${userR.username}" type="text">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a valid username.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="inputPassword">Password*</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="inputPassword" name="password" required type="password">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a valid password.
+                </div>
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Gender*</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input checked class="form-check-input" id="gridRadios1" name="sex" th:checked="${userR!=null}?${userR.sex=='M'}"
+                               type="radio" value="M">
+                        <label class="form-check-label" for="gridRadios1">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" id="gridRadios2" name="sex" th:checked="${userR!=null}?${userR.sex=='F'}"
+                               type="radio" value="F">
+                        <label class="form-check-label" for="gridRadios2">
+                            Female
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="inputAge">Age*</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="inputAge" name="age" required
+                       th:value="${userR!=null}?${userR.age}" type="number">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a valid age.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="inputPhoneNumber">Phone number</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="inputPhoneNumber" name="phoneNumber"
+                       th:value="${userR!=null}?${userR.phoneNumber}" type="text">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a valid phone number.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="inputEmail">Email</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="inputEmail" name="email" th:value="${userR!=null}?${userR.email}"
+                       type="email">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a valid email.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button class="btn btn-primary" type="submit">Sign in</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+</html>

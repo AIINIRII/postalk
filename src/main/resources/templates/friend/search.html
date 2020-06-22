@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Friend Finder</title>
+    <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragment/headbutton::#headButton}">
+</div>
+<form action="/friend/search/" method="get" name="search-friend">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputSearch">Enter the text for search</label>
+            <input type="text" name="inputSearch" class="form-control" id="inputSearch"/>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="findWay">with</label>
+            <select id="findWay" name="findWay" class="form-control">
+                <option selected value="id">ID</option>
+                <option value="username">username</option>
+            </select>
+        </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+        Search
+    </button>
+</form>
+</body>
+
+<script>
+    function findById(id) {
+        document.user_finder.action = "/user/" + id;
+    }
+</script>
+</html>
