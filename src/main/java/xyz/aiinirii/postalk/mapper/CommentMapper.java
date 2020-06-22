@@ -29,7 +29,7 @@ public interface CommentMapper {
                     @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY)),
                     @Result(id = true, column = "tid", property = "likes", many = @Many(select = "xyz.aiinirii.postalk.mapper.LikeMapper.findLikeByTId", fetchType = FetchType.LAZY)),
                     @Result(id = true, column = "tid", property = "comments", many = @Many(select = "xyz.aiinirii.postalk.mapper.CommentMapper.findAllCommentByPId",fetchType = FetchType.LAZY)),
-                    @Result(id = true, column = "pid", property = "text", one = @One(select = "xyz.aiinirii.postalk.mapper.TextMapper.findTextById", fetchType = FetchType.LAZY))
+                    @Result(id = true, column = "pid", property = "text", one = @One(select = "xyz.aiinirii.postalk.mapper.PostMapper.findPostById", fetchType = FetchType.LAZY))
             }
     )
     List<Comment> findAllCommentByPId(Integer tid);
@@ -46,7 +46,7 @@ public interface CommentMapper {
                     @Result(column = "uid", property = "user", one = @One(select = "xyz.aiinirii.postalk.mapper.UserMapper.findUserById", fetchType = FetchType.LAZY)),
                     @Result(id = true, column = "tid", property = "likes", many = @Many(select = "xyz.aiinirii.postalk.mapper.LikeMapper.findLikeByTId", fetchType = FetchType.LAZY)),
                     @Result(id = true, column = "tid", property = "comments", many = @Many(select = "xyz.aiinirii.postalk.mapper.CommentMapper.findAllCommentByPId", fetchType = FetchType.LAZY)),
-                    @Result(id = true, column = "pid", property = "text", one = @One(select = "xyz.aiinirii.postalk.mapper.TextMapper.findTextById", fetchType = FetchType.LAZY))
+                    @Result(id = true, column = "pid", property = "text", one = @One(select = "xyz.aiinirii.postalk.mapper.PostMapper.findPostById", fetchType = FetchType.LAZY))
             }
     )
     Comment findCommentById(Integer id);

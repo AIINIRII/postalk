@@ -12,7 +12,8 @@
                     <a href="#" class="badge badge-light card-text"
                        th:text="${!comment.anonymous?comment.user.username:'anonymous'}">Light</a>
                     <p class="card-text col-sm-8" th:text="${comment.content}">content</p>
-                    <form th:action="@{'/comment/' + ${comment.id}}" method="post" th:if="${session.loginUser.id == comment.user.id}">
+                    <!--/*@thymesVar id="comment" type="xyz.aiinirii.postalk.bean.Comment"*/-->
+                    <form th:action="@{'/comment/' + ${comment.id}}" method="post" th:if="${session.loginUser.id} == ${comment.user.id} or ${session.loginUser.id} == ${comment.text.user.id}">
                         <input type="hidden" name="_method" value="delete"/>
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>

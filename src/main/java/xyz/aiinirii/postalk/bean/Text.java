@@ -10,7 +10,7 @@ import java.util.List;
  * @author AIINIRII
  */
 @Data
-public abstract class Text implements Serializable {
+public class Text implements Serializable {
 
     private Integer id;
     private String content;
@@ -20,4 +20,5 @@ public abstract class Text implements Serializable {
     private User user;
     private List<Like> likes;
     private List<Comment> comments;
+
 }

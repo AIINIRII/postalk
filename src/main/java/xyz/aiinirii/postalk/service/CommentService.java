@@ -40,7 +40,7 @@ public class CommentService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public boolean deleteCommentById(Integer id, User user) throws Exception {
-        if (commentMapper.findCommentById(id).getUser().getId().equals(user.getId())) {
+        if (commentMapper.findCommentById(id).getUser().getId().equals(user.getId()) || commentMapper.findCommentById(id).getText().getUser().getId().equals(user.getId())) {
             return commentMapper.deleteCommentById(id) == 1 &&
                     textMapper.deleteTextById(id) == 1;
         } else {
